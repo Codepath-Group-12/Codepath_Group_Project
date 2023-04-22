@@ -60,7 +60,7 @@ Required Features:
 
 Stretch Features:
 
-- Paradox of Choice Mode - Limits the user to three concerts
+- Paradox of Choice Mode - Limits the user to three concerts (or allow user to choose between top 3, 5 or 10)
 - Option to filter results by price, date (month)
 - Ability to create a list of events you have saved
 
