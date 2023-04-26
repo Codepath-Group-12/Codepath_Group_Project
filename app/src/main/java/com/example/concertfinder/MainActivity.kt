@@ -3,15 +3,14 @@ package com.example.concertfinder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
-import org.json.JSONArray
-import org.json.JSONObject
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var concertInfoLists: MutableList<List<String>>
 
     // recycler view variable
-    //private lateinit var rvConcerts: RecyclerView
+    private lateinit var rvConcerts: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +48,19 @@ class MainActivity : AppCompatActivity() {
         concertShortTitleList = mutableListOf()
         concertAveragePriceList = mutableListOf()
 
+        // initialize search variables
+        val searchButton = findViewById<Button>(R.id.concertButton)
+        val searchText = findViewById<EditText>(R.id.enterzipcode)
         // connect recycler view to id in xml file
-        //rvConcerts = findViewById(R.id.concert_list)
+        rvConcerts = findViewById(R.id.concertRecyclerView)
 
         getConcertData()
 
         Log.d("Concert Data", "Concert Data obtained")
 
+        searchButton.setOnClickListener{
+            searchConcert(searchText)
+        }
     }
 
     private fun getConcertData() {
@@ -91,12 +96,12 @@ class MainActivity : AppCompatActivity() {
 
                 // adapter code - ConcertAdapter is the name of the adapter class
                 // pass the list of lists to that class
-/*
+
                 val adapter = ConcertAdapter(concertInfoLists)
                 rvConcerts.adapter = adapter
                 rvConcerts.layoutManager = LinearLayoutManager(this@MainActivity)
                 rvConcerts.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
-                */
+
 
             }
 
@@ -107,6 +112,54 @@ class MainActivity : AppCompatActivity() {
                 throwable: Throwable?
             ) {
                 Log.d("Concert Error", errorResponse)
+            }
+        }]
+    }
+    private fun searchConcert(input: EditText) {
+        val client = AsyncHttpClient()
+
+
+        client["https://api.seatgeek.com/2/events?per_page=100&geoip=$input&sort=datetime_local.asc&taxonomies.name=concert&client_id=MzMxMjE4NTl8MTY4MTY5MTMyMi4yMzU5NDc&client_secret=50e2878b072fd825d75103491d8ded459ec8d3f53e63314ac0c731877934762a", object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
+                Log.d("searchConcert", "response successful$json")
+
+                // 100 because our API call pulled 100 concerts - alter this number if needed
+                for (i in 0 until 100) {
+
+                    // add info to the respective lists
+
+                    concertDateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("datetime_utc").toString())
+                    concertVenueList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("name").toString())
+                    concertTicketURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("url").toString())
+                    concertPictureURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONArray("performers").getJSONObject(0).get("image").toString())
+                    concertCityList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("city").toString())
+                    concertStateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("state").toString())
+                    concertShortTitleList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("short_title").toString())
+                    concertAveragePriceList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("stats").get("average_price").toString())
+
+                }
+
+                concertInfoLists = mutableListOf(concertShortTitleList, concertDateList, concertCityList, concertStateList, concertVenueList, concertPictureURLList, concertTicketURLList, concertAveragePriceList)
+
+
+                // adapter code - ConcertAdapter is the name of the adapter class
+                // pass the list of lists to that class
+
+                                val adapter = ConcertAdapter(concertInfoLists)
+                                rvConcerts.adapter = adapter
+                                rvConcerts.layoutManager = LinearLayoutManager(this@MainActivity)
+                                rvConcerts.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
+
+
+            }
+
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                errorResponse: String,
+                throwable: Throwable?
+            ) {
+                Log.d("Concert Search Error", errorResponse)
             }
         }]
     }
