@@ -6,5 +6,19 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+
+    <!-- Chosen color palette link: https://coolors.co/ffffff-3b413c-ed6a5a-58bc82-67aaf9-->
+    <color name="floral_white">#fff8f0</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black_olive">#3b413c</color>
+    <color name="bittersweet">#ed6a5a</color>
+    <color name="emerald">#58bc82</color>
+    <color name="ruddy_blue">#67aaf9</color>
+    <color name="platinum">#dae3e5</color>
+    <color name="black_light">#212121</color>
+    <color name="gray_light">#b3b3b3</color>
+    <color name="columbia_blue">#bbd1ea</color>
+    <color name="snow">#fffbfa</color>
+    <color name="blue_black">#040720</color>
+    <color name="cornsilk">#fbf8df</color>
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/snow"
     tools:context=".MainActivity">
 
 
@@ -14,45 +15,55 @@
         android:layout_height="50dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:layout_marginTop="50dp"
+        android:hint=" Enter your zip code"
+        android:textColor="@color/white"
+        android:textCursorDrawable="@null"
+        android:background="@color/black_olive"
+        android:textColorHint="@color/gray_light"
+        android:fontFamily="@font/roboto"
+
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        android:hint="Enter your zip code"
-
-        android:textColor="@color/white"
-
-        android:textCursorDrawable="@null"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/concertButton"
-        android:text="DISCOVER"
-        app:layout_constraintStart_toStartOf="@id/enterzipcode"
-        app:layout_constraintEnd_toEndOf="@id/enterzipcode"
-        app:layout_constraintTop_toBottomOf="@id/enterzipcode"
-        android:layout_marginTop="20dp"
         android:layout_width="280dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+
+        android:fontFamily="@font/roboto_bold"
+        android:text="DISCOVER"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@id/enterzipcode"
+        app:layout_constraintStart_toStartOf="@id/enterzipcode"
+        app:layout_constraintTop_toBottomOf="@id/enterzipcode" />
 
     <TextView
         android:id="@+id/concertText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Here's what's going on near you:"
-        android:textColor="@color/black"
+        android:fontFamily="@font/ibarra_real_nova"
+        android:text="Find out what's going on near you:"
         android:textAlignment="center"
+        android:textColor="@color/black"
+
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/concertButton"
-        app:layout_constraintVertical_bias="0.10"/>
+        app:layout_constraintVertical_bias="0.10" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/concertRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
