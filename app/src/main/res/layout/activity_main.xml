@@ -18,15 +18,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="50dp"
-        android:hint="Enter your location"
+        android:hint="Enter your zip code"
 
         android:textColor="@color/white"
 
         android:textCursorDrawable="@null"/>
 
     <Button
-        android:id="@+id/button"
-        android:text="SEARCH"
+        android:id="@+id/concertButton"
+        android:text="DISCOVER"
         app:layout_constraintStart_toStartOf="@id/enterzipcode"
         app:layout_constraintEnd_toEndOf="@id/enterzipcode"
         app:layout_constraintTop_toBottomOf="@id/enterzipcode"
@@ -35,7 +35,7 @@
         android:layout_height="50dp"/>
 
     <TextView
-        android:id="@+id/login_text"
+        android:id="@+id/concertText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Here's what's going on near you:"
@@ -46,7 +46,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button"
+        app:layout_constraintTop_toBottomOf="@id/concertButton"
         app:layout_constraintVertical_bias="0.10"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/concertRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/concertText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
