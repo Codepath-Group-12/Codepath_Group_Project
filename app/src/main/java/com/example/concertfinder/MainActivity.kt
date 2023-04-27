@@ -18,17 +18,17 @@ class MainActivity : AppCompatActivity() {
 
     // these lists hold all info we need for each recycler view
     // [dates], [venues], [ticket URLs], [picture URLs], [cities], [states], [short titles], [average prices]
-    private lateinit var concertDateList: MutableList<String>
-    private lateinit var concertVenueList: MutableList<String>
-    private lateinit var concertTicketURLList: MutableList<String>
-    private lateinit var concertPictureURLList: MutableList<String>
-    private lateinit var concertCityList: MutableList<String>
-    private lateinit var concertStateList: MutableList<String>
-    private lateinit var concertShortTitleList: MutableList<String>
-    private lateinit var concertAveragePriceList: MutableList<String>
+    //private lateinit var concertDateList: MutableList<String>
+    //private lateinit var concertVenueList: MutableList<String>
+    //private lateinit var concertTicketURLList: MutableList<String>
+    //private lateinit var concertPictureURLList: MutableList<String>
+    //private lateinit var concertCityList: MutableList<String>
+    //private lateinit var concertStateList: MutableList<String>
+    //private lateinit var concertShortTitleList: MutableList<String>
+    //private lateinit var concertAveragePriceList: MutableList<String>
 
     // this is a list of all of the above lists which can be passed to the recycler view
-    private lateinit var concertInfoLists: MutableList<List<String>>
+
 
     // recycler view variable
     private lateinit var rvConcerts: RecyclerView
@@ -39,14 +39,14 @@ class MainActivity : AppCompatActivity() {
 
         // initialize variables defined above
 
-        concertDateList = mutableListOf()
-        concertVenueList = mutableListOf()
-        concertTicketURLList = mutableListOf()
-        concertPictureURLList = mutableListOf()
-        concertCityList = mutableListOf()
-        concertStateList = mutableListOf()
-        concertShortTitleList = mutableListOf()
-        concertAveragePriceList = mutableListOf()
+        //concertDateList = mutableListOf()
+        //concertVenueList = mutableListOf()
+        //concertTicketURLList = mutableListOf()
+        //concertPictureURLList = mutableListOf()
+        //concertCityList = mutableListOf()
+        //concertStateList = mutableListOf()
+        //concertShortTitleList = mutableListOf()
+        //concertAveragePriceList = mutableListOf()
 
         // initialize search variables
         val searchButton = findViewById<Button>(R.id.concertButton)
@@ -59,11 +59,12 @@ class MainActivity : AppCompatActivity() {
         Log.d("Concert Data", "Concert Data obtained")
 
         searchButton.setOnClickListener{
-            searchConcert(searchText)
+            var input = searchText.text.toString()
+            searchConcert(input)
         }
     }
 
-    private fun getConcertData() {
+    private fun getConcertData(){
 
         val client = AsyncHttpClient()
 
@@ -74,31 +75,40 @@ class MainActivity : AppCompatActivity() {
         client["https://api.seatgeek.com/2/events?per_page=100&geoip=60639&sort=datetime_local.asc&taxonomies.name=concert&client_id=MzMxMjE4NTl8MTY4MTY5MTMyMi4yMzU5NDc&client_secret=50e2878b072fd825d75103491d8ded459ec8d3f53e63314ac0c731877934762a", object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
                 Log.d("Concert", "response successful$json")
-
+                val concertInfoLists = ArrayList<ConcertData>()
                 // 100 because our API call pulled 100 concerts - alter this number if needed
                 for (i in 0 until 100) {
 
                     // add info to the respective lists
 
-                    concertDateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("datetime_utc").toString())
-                    concertVenueList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("name").toString())
-                    concertTicketURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("url").toString())
-                    concertPictureURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONArray("performers").getJSONObject(0).get("image").toString())
-                    concertCityList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("city").toString())
-                    concertStateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("state").toString())
-                    concertShortTitleList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("short_title").toString())
-                    concertAveragePriceList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("stats").get("average_price").toString())
+                    val concertDate = (json.jsonObject.getJSONArray("events").getJSONObject(i).get("datetime_utc").toString())
+                    val concertLocation = (json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("name").toString())
+                    //concertTicketURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("url").toString())
+                    val concertImage = (json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONArray("performers").getJSONObject(0).get("image").toString())
+                    //concertCityList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("city").toString())
+                    //concertStateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("state").toString())
+                    val concertName = (json.jsonObject.getJSONArray("events").getJSONObject(i).get("short_title").toString())
+                    //concertAveragePriceList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("stats").get("average_price").toString())
 
+                    concertInfoLists.add(
+                        ConcertData(
+                            concertName,
+                            concertLocation,
+                            concertDate,
+                            concertImage
+
+                        )
+                    )
                 }
 
-                concertInfoLists = mutableListOf(concertShortTitleList, concertDateList, concertCityList, concertStateList, concertVenueList, concertPictureURLList, concertTicketURLList, concertAveragePriceList)
+                //concertInfoLists = mutableListOf(concertShortTitleList, concertDateList, concertVenueList, concertPictureURLList)
 
 
                 // adapter code - ConcertAdapter is the name of the adapter class
                 // pass the list of lists to that class
 
-                val adapter = ConcertAdapter(concertInfoLists)
-                rvConcerts.adapter = adapter
+
+                rvConcerts.adapter = ConcertAdapter(concertInfoLists)
                 rvConcerts.layoutManager = LinearLayoutManager(this@MainActivity)
                 rvConcerts.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
 
@@ -115,40 +125,49 @@ class MainActivity : AppCompatActivity() {
             }
         }]
     }
-    private fun searchConcert(input: EditText) {
+    private fun searchConcert(input: String) {
         val client = AsyncHttpClient()
 
 
         client["https://api.seatgeek.com/2/events?per_page=100&geoip=$input&sort=datetime_local.asc&taxonomies.name=concert&client_id=MzMxMjE4NTl8MTY4MTY5MTMyMi4yMzU5NDc&client_secret=50e2878b072fd825d75103491d8ded459ec8d3f53e63314ac0c731877934762a", object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
                 Log.d("searchConcert", "response successful$json")
-
+                val concertInfoLists = ArrayList<ConcertData>()
                 // 100 because our API call pulled 100 concerts - alter this number if needed
                 for (i in 0 until 100) {
 
                     // add info to the respective lists
 
-                    concertDateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("datetime_utc").toString())
-                    concertVenueList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("name").toString())
-                    concertTicketURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("url").toString())
-                    concertPictureURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONArray("performers").getJSONObject(0).get("image").toString())
-                    concertCityList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("city").toString())
-                    concertStateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("state").toString())
-                    concertShortTitleList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("short_title").toString())
-                    concertAveragePriceList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("stats").get("average_price").toString())
+                    val concertDate = (json.jsonObject.getJSONArray("events").getJSONObject(i).get("datetime_utc").toString())
+                    val concertLocation = (json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("name").toString())
+                    //concertTicketURLList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).get("url").toString())
+                    val concertImage = (json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONArray("performers").getJSONObject(0).get("image").toString())
+                    //concertCityList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("city").toString())
+                    //concertStateList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("venue").get("state").toString())
+                    val concertName = (json.jsonObject.getJSONArray("events").getJSONObject(i).get("short_title").toString())
+                    //concertAveragePriceList.add(json.jsonObject.getJSONArray("events").getJSONObject(i).getJSONObject("stats").get("average_price").toString())
 
+                    concertInfoLists.add(
+                        ConcertData(
+                            concertName,
+                            concertLocation,
+                            concertDate,
+                            concertImage
+
+                        )
+                    )
                 }
 
-                concertInfoLists = mutableListOf(concertShortTitleList, concertDateList, concertCityList, concertStateList, concertVenueList, concertPictureURLList, concertTicketURLList, concertAveragePriceList)
+                //concertInfoLists = mutableListOf(concertShortTitleList, concertDateList, concertVenueList, concertPictureURLList)
 
 
                 // adapter code - ConcertAdapter is the name of the adapter class
                 // pass the list of lists to that class
 
-                                val adapter = ConcertAdapter(concertInfoLists)
-                                rvConcerts.adapter = adapter
-                                rvConcerts.layoutManager = LinearLayoutManager(this@MainActivity)
-                                rvConcerts.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
+
+                rvConcerts.adapter = ConcertAdapter(concertInfoLists)
+                rvConcerts.layoutManager = LinearLayoutManager(this@MainActivity)
+                rvConcerts.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
 
 
             }
@@ -160,6 +179,7 @@ class MainActivity : AppCompatActivity() {
                 throwable: Throwable?
             ) {
                 Log.d("Concert Search Error", errorResponse)
+
             }
         }]
     }
