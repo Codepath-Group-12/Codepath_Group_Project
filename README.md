@@ -43,10 +43,6 @@ Here's a video that demos all of the app's implemented features:
 
 <img src='https://img.youtube.com/vi/K0onvLYmOUM/maxresdefault.jpg' title='Video Demo' width='' alt='Video Demo' />
 
-<iframe width="420" height="315"
-src="https://youtu.be/K0onvLYmOUM">
-</iframe>
-
 VIDEO created with Screen capture
 
 ## Notes
