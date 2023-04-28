@@ -43,7 +43,7 @@ Here's a video that demos all of the app's implemented features:
 
 <img src='https://img.youtube.com/vi/K0onvLYmOUM/maxresdefault.jpg' title='Video Demo' width='' alt='Video Demo' />
 
-<a href="https://img.youtube.com/vi/K0onvLYmOUM">Video link</a>
+<a href="https://youtu.be/K0onvLYmOUM">Video link</a>
 
 VIDEO created with Screen capture
 
