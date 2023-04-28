@@ -82,7 +82,7 @@ Required Feature
 ## Wireframes
 
 <!-- Add picture of your hand sketched wireframes in this section -->
-<img src="https://i.imgur.com/W1CDWt4.png" width="600" >
+<img src="https://i.imgur.com/W1CDWt4.png" width="300px" >
 
 ### [BONUS] Digital Wireframes & Mockups
 
@@ -97,7 +97,7 @@ For Milestone 2, include **2+ GIFs** of the build process here!
 
  <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bd7a4159f11f4447b188a399ea838669-with-play.gif">
 
-    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/760740c1510f489caa2044d0a988499f-with-play.gif">
+ <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/760740c1510f489caa2044d0a988499f-with-play.gif">
 
 
 ## License
