@@ -44,7 +44,7 @@ Here's a video that demos all of the app's implemented features:
 <img src='https://youtu.be/K0onvLYmOUM' title='Video Demo' width='' alt='Video Demo' />
 
 <iframe width="420" height="315"
-src="[https://www.youtube.com/embed/tgbNymZ7vqY](https://youtu.be/K0onvLYmOUM)">
+src="https://youtu.be/K0onvLYmOUM">
 </iframe>
 
 VIDEO created with Screen capture
