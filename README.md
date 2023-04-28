@@ -3,15 +3,15 @@
 # AND101 Milestone 2 - **Team/App Name**
 
 Submitted by:
-- **Team Member 1 Name Here**
-- **Team Member 2 Name Here**
-- **etc**
+- Emily Craven 
+- Ignacio De La Cruz
+- Joshua Randle
 
-Time spent: **X** hours spent in total
+Time spent: 16 hours spent in total
 
 ## Summary
 
-This document provides a summary of our project building process for our app, **App Name Here**
+This document provides a summary of our project building process for our app, ConcertFinder
 
 ## Milestone Requirements
 
@@ -19,16 +19,16 @@ This document provides a summary of our project building process for our app, **
 
 The following REQUIRED features are completed:
 
-- [ ] Assign features to each member of your group
-- [ ] Establish a goal time for completing each feature
+- [x] Assign features to each member of your group
+- [x] Establish a goal time for completing each feature
 
 The following REQUIRED files are included:
 
-- [ ] Updated 📄 `project_spec.md`, which contains:
+- [x] Updated 📄 `project_spec.md`, which contains:
   - [X] App Overview (Milestone 1)
   - [X] App Spec (Milestone 1)
-  - [ ] Checked off 2+ completed features
-  - [ ] 2+ GIFs of build progress
+  - [x] Checked off 2+ completed features
+  - [x] 2+ GIFs of build progress
 
 - [ ] Our 🎥 Demo Video
   - [ ] We have also added the Demo Video Link to the Group Info Form on the course portal.
