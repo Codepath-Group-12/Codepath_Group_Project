@@ -95,6 +95,11 @@ process, or what you learned this unit!
 
 For Milestone 2, include **2+ GIFs** of the build process here!
 
+ <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bd7a4159f11f4447b188a399ea838669-with-play.gif">
+
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/760740c1510f489caa2044d0a988499f-with-play.gif">
+
+
 ## License
 
 Copyright 2023 Emily Craven, Ignacio De La Cruz, Joshua Randle
